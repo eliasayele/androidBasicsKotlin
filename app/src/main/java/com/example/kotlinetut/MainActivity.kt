@@ -1,170 +1,76 @@
 package com.example.kotlinetut
 
-import android.Manifest
-import android.app.Activity
-import android.content.Intent
-import android.content.pm.PackageManager
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.RadioButton
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.app.ActivityCompat
+import androidx.appcompat.app.AlertDialog
+
 import com.example.kotlinetut.databinding.ActivityMainBinding
-import kotlin.math.log
+
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding:ActivityMainBinding
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode == Activity.RESULT_OK && requestCode ==0 ){
-            var uri = data?.data
-            //ActivityMainBinding.bind(layoutInflater).ivPhoto.setImageUri(uri)
-             binding.ivPhoto.setImageURI(uri)
-        }
-    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // setContentView(R.layout.activity_main)
-         binding = ActivityMainBinding.inflate(layoutInflater)
-        var view = binding.root
-        setContentView(view)
+          binding = ActivityMainBinding.inflate(layoutInflater)
+          var view = binding.root
+          setContentView(view)
 
-        ///pick image from gallery
-binding.btnTakePhoto.setOnClickListener {
-    val intent = Intent(this, MainActivity::class.java)
+        //creating dialog and show when button pressed
+       val addContactDialog = AlertDialog.Builder(this)
+           .setTitle("Add Contact")
+           .setMessage("Do You want to add Mr Bini To your contact list? ")
+           .setIcon(R.drawable.ic_addcontact)
+           .setPositiveButton("Yes"){  _,_ ->
+             Toast.makeText(this,"You added mr poop to the list",Toast.LENGTH_LONG).show()
+           }
+           .setNegativeButton("No") { _,_ ->
+               Toast.makeText(this,"you didn't add Mr poop to your contact list",Toast.LENGTH_LONG).show()
+           }.create()
 
-    Intent(Intent.ACTION_GET_CONTENT).also {
-        it.type = "image/*"
-       // binding.ivPhoto.setImageURI(uri)
-        startActivityForResult(it,0)
-    }
-}
+        //creating dialog and
+        val options = arrayOf("First Item", "Second Item", "Third Item")
+        val singleChoiceDialog  = AlertDialog.Builder(this)
+            .setTitle("Choose one of these option")
+            .setSingleChoiceItems(options,0){ dialogInterface,i ->
+                Toast.makeText(this,"You clicked on ${options[i]}",Toast.LENGTH_LONG).show()
+            }
+            .setPositiveButton("Accept"){  _,_ ->
+                Toast.makeText(this,"You accepted the SingleChoiceDialog",Toast.LENGTH_LONG).show()
+            }
+            .setNegativeButton("Decline") { _,_ ->
+                Toast.makeText(this,"you declined the SingleChoiceDialog",Toast.LENGTH_LONG).show()
+            }.create()
+        val multipleChoiceDialog  = AlertDialog.Builder(this)
+            .setTitle("Choose one of these option")
+            .setMultiChoiceItems(options, booleanArrayOf(false,false,false)){ _, i, isChecked ->
+                if(isChecked){
+                Toast.makeText(this, "You Checked ${options[i]}", Toast.LENGTH_LONG).show()
 
-
-///user Permission
-//    binding.btnRequestPermission.setOnClickListener {
-//        requestPermissions()
-//    }
-
-        /*Passing data between screens
-        * */
-//binding.btnApply.setOnClickListener {
-//
-//    val name  = binding.etName.text.toString()
-//    Log.d("printed values","this is the string  name ${name}")
-//    val age  = binding.etAge.text.toString().toInt()
-//    Log.d("printed","this is the string  age ${age}")
-//    val country = binding.etCountry.text.toString()
-//    Log.d("printed","this is the string  country ${country}")
-//    val person = Person(name,age,country)
-//     Intent(this,SecondActivity::class.java).also {
-//         it.putExtra("EXTRA_PERSON",person)
-//         startActivity(
-//             it
-//         )
-//     }
-//}
-
-        //make toast
-//      binding.btnShowToast.setOnClickListener {
-//          Toast(this).apply {
-//              duration = Toast.LENGTH_LONG
-//              view  = layoutInflater.inflate(R.layout.custom_toast,binding.clToastMain) as ConstraintLayout
-//              show()
-//          }
-//          //Toast.makeText(this, "Hi this is the toast!", Toast.LENGTH_LONG).show()
-//      }
-
-
-
-//            binding.btnOrder.setOnClickListener {
-//                val checkedMeetRadioButtonId  = binding.rgMeat.checkedRadioButtonId
-//                val meat  = findViewById<RadioButton>(checkedMeetRadioButtonId)
-//                val cheese  = binding.cbCheese.isChecked
-//                val salad  = binding.cbSalad.isChecked
-//                val onion  = binding.cbOnion.isChecked
-//
-//                val orderString = "you order a burger with: \n" +
-//                        " ${meat.text}" +
-//                        (if(cheese) "\nCheese" else "") +
-//                        (if (salad) "\nSalad" else "") +
-//                        (if (onion) "\nOnion " else "")
-//             binding.tvOrder.text = orderString
-//             }
-
-
-
-
-
-        //show image when button pressed
-//           binding.btnAddImage.setOnClickListener {
-//               binding.ivImage.setImageResource(R.drawable.grass)
-//           }
-        //adition code
-//        binding.btnAdd.setOnClickListener {
-//            var firstnum = binding.etFirstNumber.text.toString().toInt()
-//            var secondnum = binding.etSecondNumber.text.toString().toInt()
-//            val result = firstnum + secondnum
-//            binding.tvResult.text = result.toString()
-//        }
-        //counter
-//        var count = 0
-//        binding.btnCount.setOnClickListener {
-//            count ++
-//            binding.tvCount.text = "Let's count together: $count"
-//        }
-        //registration code
-//        binding.btnApply.setOnClickListener {
-//            val firstName = binding.etFirstName.text.toString()
-//            val lastName = bindin
-    //            g.etLastName.text.toString()
-//            val country = binding.etCountry.text.toString()
-//            val birthDate = binding.etBirthDate.text.toString()
-//            Log.d("Main Activity","$firstName $lastName , born on $birthDate from country $country")
-//        }
-
-
-    }
-    private fun hasWriteExternalStoragePermission() = ActivityCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-    private fun hasLocationForegroundPermission() =
-        ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) ==
-                PackageManager.PERMISSION_GRANTED
-    private fun hasLocationBackgroundPermission() =
-        ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED
-
-    private  fun requestPermissions() {
-
-        var permissionsToRequest = mutableListOf<String>()
-        if(!hasWriteExternalStoragePermission()){
-            permissionsToRequest.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        }
-        if(!hasLocationForegroundPermission()){
-            permissionsToRequest.add(Manifest.permission.ACCESS_COARSE_LOCATION)
-        }
-        if(!hasLocationBackgroundPermission()){
-            permissionsToRequest.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
-        }
-        if (permissionsToRequest.isNotEmpty()){
-            ActivityCompat.requestPermissions(this,permissionsToRequest.toTypedArray(),0)
-        }
-
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if(requestCode == 0 && grantResults.isNotEmpty()){
-            for (i in grantResults.indices){
-                if (grantResults[i] == PackageManager.PERMISSION_GRANTED){
-                    Log.d("Permission Request", "${permissions[i]} granted")
+                }else {
+                    Toast.makeText(this, "You unchecked ${options[i]}", Toast.LENGTH_LONG).show()
                 }
             }
+            .setPositiveButton("Accept"){  _,_ ->
+                Toast.makeText(this,"You accepted the MultiChoiceDialog",Toast.LENGTH_LONG).show()
+            }
+            .setNegativeButton("Decline") { _,_ ->
+                Toast.makeText(this,"you declined the MultiChoiceDialog",Toast.LENGTH_LONG).show()
+            }.create()
+        //creating application offers in localization
+        binding.btnDialog1.setOnClickListener {
+            addContactDialog.show()
         }
+        binding.btnDialog2.setOnClickListener {
+             singleChoiceDialog.show()
+        }
+        binding.btnDialog3.setOnClickListener {
+            multipleChoiceDialog.show()
+        }
+
+
     }
+
 }
