@@ -1,6 +1,7 @@
 package com.example.kotlinetut
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
@@ -8,24 +9,45 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.RadioButton
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import com.example.kotlinetut.databinding.ActivityMainBinding
 import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
-
+    lateinit var binding:ActivityMainBinding
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK && requestCode ==0 ){
+            var uri = data?.data
+            //ActivityMainBinding.bind(layoutInflater).ivPhoto.setImageUri(uri)
+             binding.ivPhoto.setImageURI(uri)
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // setContentView(R.layout.activity_main)
-        var binding = ActivityMainBinding.inflate(layoutInflater)
+         binding = ActivityMainBinding.inflate(layoutInflater)
         var view = binding.root
         setContentView(view)
 
-///user Permission
-    binding.btnRequestPermission.setOnClickListener {
-        requestPermissions()
+        ///pick image from gallery
+binding.btnTakePhoto.setOnClickListener {
+    val intent = Intent(this, MainActivity::class.java)
+
+    Intent(Intent.ACTION_GET_CONTENT).also {
+        it.type = "image/*"
+       // binding.ivPhoto.setImageURI(uri)
+        startActivityForResult(it,0)
     }
+}
+
+
+///user Permission
+//    binding.btnRequestPermission.setOnClickListener {
+//        requestPermissions()
+//    }
 
         /*Passing data between screens
         * */
