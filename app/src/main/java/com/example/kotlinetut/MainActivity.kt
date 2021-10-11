@@ -18,8 +18,17 @@ class MainActivity : AppCompatActivity() {
         var view = binding.root
         setContentView(view)
 
-binding.btnOpenActivity.setOnClickListener {
+binding.btnApply.setOnClickListener {
+
+    val name  = binding.etName.text.toString()
+    Log.d("printed values","this is the string  name ${name}")
+    val age  = binding.etAge.text.toString().toInt()
+    Log.d("printed","this is the string  age ${age}")
+    val country = binding.etCountry.text.toString()
+    Log.d("printed","this is the string  country ${country}")
+    val person = Person(name,age,country)
      Intent(this,SecondActivity::class.java).also {
+         it.putExtra("EXTRA_PERSON",person)
          startActivity(
              it
          )
