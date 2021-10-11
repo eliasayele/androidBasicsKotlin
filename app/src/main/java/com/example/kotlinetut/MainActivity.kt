@@ -1,16 +1,20 @@
 package com.example.kotlinetut
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.app.ActivityCompat
 import com.example.kotlinetut.databinding.ActivityMainBinding
 import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // setContentView(R.layout.activity_main)
@@ -18,22 +22,29 @@ class MainActivity : AppCompatActivity() {
         var view = binding.root
         setContentView(view)
 
-binding.btnApply.setOnClickListener {
+///user Permission
+    binding.btnRequestPermission.setOnClickListener {
+        requestPermissions()
+    }
 
-    val name  = binding.etName.text.toString()
-    Log.d("printed values","this is the string  name ${name}")
-    val age  = binding.etAge.text.toString().toInt()
-    Log.d("printed","this is the string  age ${age}")
-    val country = binding.etCountry.text.toString()
-    Log.d("printed","this is the string  country ${country}")
-    val person = Person(name,age,country)
-     Intent(this,SecondActivity::class.java).also {
-         it.putExtra("EXTRA_PERSON",person)
-         startActivity(
-             it
-         )
-     }
-}
+        /*Passing data between screens
+        * */
+//binding.btnApply.setOnClickListener {
+//
+//    val name  = binding.etName.text.toString()
+//    Log.d("printed values","this is the string  name ${name}")
+//    val age  = binding.etAge.text.toString().toInt()
+//    Log.d("printed","this is the string  age ${age}")
+//    val country = binding.etCountry.text.toString()
+//    Log.d("printed","this is the string  country ${country}")
+//    val person = Person(name,age,country)
+//     Intent(this,SecondActivity::class.java).also {
+//         it.putExtra("EXTRA_PERSON",person)
+//         startActivity(
+//             it
+//         )
+//     }
+//}
 
         //make toast
 //      binding.btnShowToast.setOnClickListener {
@@ -94,5 +105,44 @@ binding.btnApply.setOnClickListener {
 //        }
 
 
+    }
+    private fun hasWriteExternalStoragePermission() = ActivityCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+    private fun hasLocationForegroundPermission() =
+        ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) ==
+                PackageManager.PERMISSION_GRANTED
+    private fun hasLocationBackgroundPermission() =
+        ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED
+
+    private  fun requestPermissions() {
+
+        var permissionsToRequest = mutableListOf<String>()
+        if(!hasWriteExternalStoragePermission()){
+            permissionsToRequest.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        }
+        if(!hasLocationForegroundPermission()){
+            permissionsToRequest.add(Manifest.permission.ACCESS_COARSE_LOCATION)
+        }
+        if(!hasLocationBackgroundPermission()){
+            permissionsToRequest.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
+        }
+        if (permissionsToRequest.isNotEmpty()){
+            ActivityCompat.requestPermissions(this,permissionsToRequest.toTypedArray(),0)
+        }
+
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(requestCode == 0 && grantResults.isNotEmpty()){
+            for (i in grantResults.indices){
+                if (grantResults[i] == PackageManager.PERMISSION_GRANTED){
+                    Log.d("Permission Request", "${permissions[i]} granted")
+                }
+            }
+        }
     }
 }
