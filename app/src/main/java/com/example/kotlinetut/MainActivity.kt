@@ -1,9 +1,12 @@
 package com.example.kotlinetut
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.RadioButton
+import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.kotlinetut.databinding.ActivityMainBinding
 import kotlin.math.log
 
@@ -15,7 +18,23 @@ class MainActivity : AppCompatActivity() {
         var view = binding.root
         setContentView(view)
 
+binding.btnOpenActivity.setOnClickListener {
+     Intent(this,SecondActivity::class.java).also {
+         startActivity(
+             it
+         )
+     }
+}
 
+        //make toast
+//      binding.btnShowToast.setOnClickListener {
+//          Toast(this).apply {
+//              duration = Toast.LENGTH_LONG
+//              view  = layoutInflater.inflate(R.layout.custom_toast,binding.clToastMain) as ConstraintLayout
+//              show()
+//          }
+//          //Toast.makeText(this, "Hi this is the toast!", Toast.LENGTH_LONG).show()
+//      }
 
 
 

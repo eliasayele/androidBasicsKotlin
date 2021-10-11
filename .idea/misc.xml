@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-anydpi-v24/ic_notification.xml" value="0.171875" />
+        <entry key="app/src/main/res/layout/activity_layout.xml" value="0.18206521739130435" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_second.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/custom_toast.xml" value="0.2" />
       </map>
     </option>
   </component>
