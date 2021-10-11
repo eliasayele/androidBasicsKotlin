@@ -7,6 +7,8 @@ import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -17,13 +19,23 @@ import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding:ActivityMainBinding
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode == Activity.RESULT_OK && requestCode ==0 ){
-            var uri = data?.data
-            //ActivityMainBinding.bind(layoutInflater).ivPhoto.setImageUri(uri)
-             binding.ivPhoto.setImageURI(uri)
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.app_bar_menu,menu)
+        return  true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.miAddContact -> Toast.makeText(this, "You clicked add contact", Toast.LENGTH_SHORT).show()
+            R.id.miFavorites -> Toast.makeText(this, "You clicked favorites ", Toast.LENGTH_SHORT).show()
+            R.id.miSettings -> Toast.makeText(this, "You clicked settings", Toast.LENGTH_SHORT).show()
+            R.id.miClose -> finish()
+            R.id.miFeedback -> Toast.makeText(this, "You clicked add Feedback", Toast.LENGTH_SHORT).show()
+
         }
+
+        return true
+
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,15 +45,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         ///pick image from gallery
-binding.btnTakePhoto.setOnClickListener {
-    val intent = Intent(this, MainActivity::class.java)
-
-    Intent(Intent.ACTION_GET_CONTENT).also {
-        it.type = "image/*"
-       // binding.ivPhoto.setImageURI(uri)
-        startActivityForResult(it,0)
-    }
-}
+//binding.btnTakePhoto.setOnClickListener {
+//    val intent = Intent(this, MainActivity::class.java)
+//
+//    Intent(Intent.ACTION_GET_CONTENT).also {
+//        it.type = "image/*"
+//       // binding.ivPhoto.setImageURI(uri)
+//        startActivityForResult(it,0)
+//    }
+//}
 
 
 ///user Permission
