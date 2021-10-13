@@ -1,5 +1,6 @@
 package com.example.kotlinetut
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -17,34 +18,38 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding:ActivityMainBinding
+
+private lateinit var binding:ActivityMainBinding
 lateinit var toggle:ActionBarDrawerToggle
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
           binding = ActivityMainBinding.inflate(layoutInflater)
-
           setContentView(binding.root)
-        toggle   = ActionBarDrawerToggle(this,binding.drawerLayout,R.string.open,R.string.close)
-        binding.drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()///meaning ready to use
+        val sharedPref = getSharedPreferences("name", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        binding.btnSave.setOnClickListener {
+            val name = binding.etName.text.toString()
+            val age = binding.etAge.text.toString().toInt()
+            val isAdult = binding.cbAdult.isChecked
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding.navView.setNavigationItemSelectedListener {
-           when(it.itemId){
-               R.id.miItem1 -> Toast.makeText(applicationContext,"Clicked Item 1", Toast.LENGTH_LONG).show()
-               R.id.miItem2 -> Toast.makeText(applicationContext,"Clicked Item 2", Toast.LENGTH_LONG).show()
-               R.id.miItem3 -> Toast.makeText(applicationContext,"Clicked Item 3", Toast.LENGTH_LONG).show()
-           }
-           true
+            editor.apply{
+                putString("name",name)
+                putInt("age",age)
+                putBoolean("isAdult",isAdult)
+                apply() //editor scope apply
+            }
+
         }
+        binding.btnLoad.setOnClickListener {
+            val name = sharedPref.getString("name",null)
+            val age  = sharedPref.getInt("age",0)
+            val isAdult = sharedPref.getBoolean("isAdult", false)
 
+            binding.etName.setText(name)
+            binding.etAge.setText(age.toString())
+            binding.cbAdult.isChecked = isAdult
+        }
     }
 
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (toggle.onOptionsItemSelected(item)){
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }
 }
