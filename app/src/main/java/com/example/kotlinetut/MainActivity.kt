@@ -1,6 +1,7 @@
 package com.example.kotlinetut
 
 
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -21,43 +22,33 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
           binding = ActivityMainBinding.inflate(layoutInflater)
-
           setContentView(binding.root)
 
+         val firstFragment = FirstFragment()
+         val secondFragment  = SecondFragment()
 
-           // val adapter = TodoAdapter(todoList)
-//            binding.rvTodos.adapter = adapter
-//            binding.rvTodos.layoutManager = LinearLayoutManager(this@MainActivity)
+        supportFragmentManager.beginTransaction().apply {
+            replace(binding.mainFirstFragment.id,firstFragment)
+           // addToBackStack(null)
+            commit()
+        }
 
+        binding.btnFragment1.setOnClickListener {
+            supportFragmentManager.beginTransaction().apply {
+                replace(binding.mainFirstFragment.id,firstFragment)
+                commit()
+            }
+        }
+        binding.btnFragment2.setOnClickListener {
+            supportFragmentManager.beginTransaction().apply {
+                replace(binding.mainFirstFragment.id,secondFragment)
+                commit()
+            }
 
-
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        var todoList =
-            mutableListOf(
-                Todo("Follow AndroidDevs", false),
-                Todo("Creating app", false),
-                Todo("make company grow", false),
-                Todo("going to church ", false),
-                Todo("visiting family ", false),
-                Todo("fly in jungle and lake ", false),
-            )
-       // binding.rvTodos.adapter = TodoAdapter(todoList)
-        val adapter = TodoAdapter(TodoGenerator.getTodos())
-        //val adapter = TodoAdapter(TodoGenerator.getTodos())
-        binding.rvTodos.adapter = adapter
-        binding.rvTodos.layoutManager = LinearLayoutManager(this)
-        binding.btnAddTodo.setOnClickListener {
-            Log.d("todoadded","${binding.etTodo.text.toString() }  is the new todo")
-            val title = binding.etTodo.text.toString()
-            Log.d("todoadded","${title }  is the second new todo")
-            val todo  = Todo(title,false)
-            todoList.add(todo)
-            //adapter.notifyDataSetChanged()
-            adapter.notifyItemInserted(todoList.size - 1)
         }
     }
+
+
+
+
 }
