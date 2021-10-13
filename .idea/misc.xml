@@ -13,8 +13,11 @@
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.1408514492753623" />
         <entry key="app/src/main/res/layout/fragment_third.xml" value="0.16530797101449277" />
         <entry key="app/src/main/res/layout/item_todo.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/nav_drawer_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/nav_header.xml" value="0.1" />
         <entry key="app/src/main/res/menu/app_bar_menu.xml" value="0.11770833333333333" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.21" />
+        <entry key="app/src/main/res/menu/nav_drawer_menu.xml" value="0.1" />
       </map>
     </option>
   </component>

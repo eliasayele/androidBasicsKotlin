@@ -7,48 +7,44 @@ import androidx.fragment.app.Fragment
 
 import com.example.kotlinetut.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
-import android.R
+//import com.example.kotlinetut.R
+import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
-
-
-
 class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
-
+lateinit var toggle:ActionBarDrawerToggle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
           binding = ActivityMainBinding.inflate(layoutInflater)
 
           setContentView(binding.root)
-        val firstFragment = FirstFragment()
-        val secondFragment = SecondFragment()
-        val thirdFragment = ThirdFragment()
-        val navigation = findViewById<View>(binding.bottomNavigationView.id) as BottomNavigationView
-        setCurrentFragment(firstFragment)
-        navigation.setOnItemSelectedListener {
-            when(it.itemId) {
-                com.example.kotlinetut.R.id.miHome -> setCurrentFragment(firstFragment)
-                com.example.kotlinetut.R.id.miMessages -> setCurrentFragment(secondFragment)
-                com.example.kotlinetut.R.id.miProfile -> setCurrentFragment(thirdFragment)
-            }
-            true
-        }
-        navigation.getOrCreateBadge(com.example.kotlinetut.R.id.miMessages).apply {
-            number = 10
-            //isVisible = true
+        toggle   = ActionBarDrawerToggle(this,binding.drawerLayout,R.string.open,R.string.close)
+        binding.drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()///meaning ready to use
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.navView.setNavigationItemSelectedListener {
+           when(it.itemId){
+               R.id.miItem1 -> Toast.makeText(applicationContext,"Clicked Item 1", Toast.LENGTH_LONG).show()
+               R.id.miItem2 -> Toast.makeText(applicationContext,"Clicked Item 2", Toast.LENGTH_LONG).show()
+               R.id.miItem3 -> Toast.makeText(applicationContext,"Clicked Item 3", Toast.LENGTH_LONG).show()
+           }
+           true
         }
 
     }
 
 
-    private fun setCurrentFragment(fragment:Fragment){
-        supportFragmentManager.beginTransaction().apply {
-            replace(binding.flFragment.id,fragment)
-            commit()
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (toggle.onOptionsItemSelected(item)){
+            return true
         }
+        return super.onOptionsItemSelected(item)
     }
 }
