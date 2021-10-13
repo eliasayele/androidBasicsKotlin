@@ -1,19 +1,19 @@
 package com.example.kotlinetut
 
-
-import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.LinearLayout
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.text.TextUtils
+import androidx.fragment.app.Fragment
 
 import com.example.kotlinetut.databinding.ActivityMainBinding
+import com.google.android.material.navigation.NavigationView
+import android.R
+import android.view.View
+
+import com.google.android.material.bottomnavigation.BottomNavigationView
+
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,33 +22,33 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
           binding = ActivityMainBinding.inflate(layoutInflater)
+
           setContentView(binding.root)
-
-         val firstFragment = FirstFragment()
-         val secondFragment  = SecondFragment()
-
-        supportFragmentManager.beginTransaction().apply {
-            replace(binding.mainFirstFragment.id,firstFragment)
-           // addToBackStack(null)
-            commit()
-        }
-
-        binding.btnFragment1.setOnClickListener {
-            supportFragmentManager.beginTransaction().apply {
-                replace(binding.mainFirstFragment.id,firstFragment)
-                commit()
+        val firstFragment = FirstFragment()
+        val secondFragment = SecondFragment()
+        val thirdFragment = ThirdFragment()
+        val navigation = findViewById<View>(binding.bottomNavigationView.id) as BottomNavigationView
+        setCurrentFragment(firstFragment)
+        navigation.setOnItemSelectedListener {
+            when(it.itemId) {
+                com.example.kotlinetut.R.id.miHome -> setCurrentFragment(firstFragment)
+                com.example.kotlinetut.R.id.miMessages -> setCurrentFragment(secondFragment)
+                com.example.kotlinetut.R.id.miProfile -> setCurrentFragment(thirdFragment)
             }
+            true
         }
-        binding.btnFragment2.setOnClickListener {
-            supportFragmentManager.beginTransaction().apply {
-                replace(binding.mainFirstFragment.id,secondFragment)
-                commit()
-            }
+        navigation.getOrCreateBadge(com.example.kotlinetut.R.id.miMessages).apply {
+            number = 10
+            //isVisible = true
+        }
 
-        }
     }
 
 
-
-
+    private fun setCurrentFragment(fragment:Fragment){
+        supportFragmentManager.beginTransaction().apply {
+            replace(binding.flFragment.id,fragment)
+            commit()
+        }
+    }
 }
