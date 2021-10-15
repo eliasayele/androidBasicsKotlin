@@ -5,11 +5,25 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-anydpi-v24/ic_notification.xml" value="0.171875" />
+        <entry key="app/src/main/res/drawable-xxhdpi/bottom_nav_selector.xml" value="0.209375" />
+        <entry key="app/src/main/res/drawable/about_android_trivia.xml" value="0.209375" />
         <entry key="app/src/main/res/layout/activity_layout.xml" value="0.18206521739130435" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.16" />
         <entry key="app/src/main/res/layout/activity_second.xml" value="0.22" />
         <entry key="app/src/main/res/layout/custom_toast.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_first.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_run.xml" value="0.1431159420289855" />
+        <entry key="app/src/main/res/layout/fragment_second.xml" value="0.1408514492753623" />
+        <entry key="app/src/main/res/layout/fragment_setup.xml" value="0.1431159420289855" />
+        <entry key="app/src/main/res/layout/fragment_statistics.xml" value="0.1431159420289855" />
+        <entry key="app/src/main/res/layout/fragment_third.xml" value="0.16530797101449277" />
+        <entry key="app/src/main/res/layout/fragment_tracking.xml" value="0.1431159420289855" />
+        <entry key="app/src/main/res/layout/item_todo.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/nav_drawer_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/nav_header.xml" value="0.1" />
         <entry key="app/src/main/res/menu/app_bar_menu.xml" value="0.11770833333333333" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.21" />
+        <entry key="app/src/main/res/menu/nav_drawer_menu.xml" value="0.1" />
       </map>
     </option>
   </component>
