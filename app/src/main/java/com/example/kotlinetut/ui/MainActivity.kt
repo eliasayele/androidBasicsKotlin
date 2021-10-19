@@ -4,17 +4,22 @@ package com.example.kotlinetut.ui
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.navOptions
 import androidx.navigation.ui.setupWithNavController
 import com.example.kotlinetut.R
-import com.example.kotlinetut.databinding.ActivityMainBinding
-import com.example.kotlinetut.databinding.ItemRunBinding
+//import com.example.kotlinetut.databinding.ActivityMainBinding
+//import com.example.kotlinetut.databinding.ItemRunBinding
 import com.example.kotlinetut.db.RunDAO
 import dagger.hilt.android.AndroidEntryPoint
-import hilt_aggregated_deps._com_example_kotlinetut_ui_fragments_RunFragment_GeneratedInjector
 import javax.inject.Inject
+
+
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import com.example.kotlinetut.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
@@ -27,11 +32,23 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
-//
-      //binding.bottomNavigationView.setupWithNavController(R.id.navHostFragment.findNavController())
-//
+        val navController: NavController =
+            Navigation.findNavController(this, R.id.navHostFragment)
+
+        binding.bottomNavigationView.setupWithNavController(navController)
+        navController.addOnDestinationChangedListener { _,destination,_ ->
+            when(destination.id){
+                R.id.settingsFragment , R.id.statisticFragment, R.id.runFragment  ->
+                    binding.bottomNavigationView.visibility = View.VISIBLE
+
+                else -> binding.bottomNavigationView.visibility = View.GONE
+            }
+
+        }
+
 
     }
+
 
 
 }
