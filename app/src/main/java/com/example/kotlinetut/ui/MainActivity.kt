@@ -21,7 +21,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.kotlinetut.databinding.ActivityMainBinding
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
+        //setSupportActionBar(binding.toolbar)
         val navController: NavController =
             Navigation.findNavController(this, R.id.navHostFragment)
 
@@ -44,7 +44,10 @@ class MainActivity : AppCompatActivity() {
                 else -> binding.bottomNavigationView.visibility = View.GONE
             }
 
+
         }
+
+        ///clients offers inclination
 
 
     }
