@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
             Navigation.findNavController(this, R.id.navHostFragment)
 
         binding.bottomNavigationView.setupWithNavController(navController)
+
         navController.addOnDestinationChangedListener { _,destination,_ ->
             when(destination.id){
                 R.id.settingsFragment , R.id.statisticFragment, R.id.runFragment  ->
@@ -43,8 +44,6 @@ class MainActivity : AppCompatActivity() {
 
                 else -> binding.bottomNavigationView.visibility = View.GONE
             }
-
-
         }
 
         ///clients offers inclination

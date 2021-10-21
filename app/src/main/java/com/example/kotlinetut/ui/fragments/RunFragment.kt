@@ -56,6 +56,17 @@ class RunFragment:Fragment(R.layout.fragment_run) ,EasyPermissions.PermissionCal
                 Manifest.permission.ACCESS_COARSE_LOCATION,
                 Manifest.permission.ACCESS_FINE_LOCATION
             )
+//            EasyPermissions.requestPermissions(
+//                this,
+//                "You need to accept location permission to use this",
+//                Manifest.permission.ACCESS_COARSE_LOCATION
+//            )
+//            EasyPermissions.requestPermissions(
+//                this,
+//                "You need to accept location permission to use this",
+//
+//                Manifest.permission.ACCESS_FINE_LOCATION
+//            )
         } else{
             EasyPermissions.requestPermissions(
                 this,
