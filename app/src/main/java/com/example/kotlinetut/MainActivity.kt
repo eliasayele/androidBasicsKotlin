@@ -19,11 +19,13 @@ import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding:ActivityMainBinding
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.app_bar_menu,menu)
-        return  true
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        var view = binding.root
+        setContentView(view)
     }
-
-
 
 }
