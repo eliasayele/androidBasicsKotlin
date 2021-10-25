@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.example.kotlinetut.model.Blog
 import com.example.kotlinetut.room.BlogDao
 import com.example.kotlinetut.room.BlogDataBase
+
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,5 +34,23 @@ object RoomModule {
     fun  provideBlogDAO(blogDataBase: BlogDataBase):BlogDao{
         return blogDataBase.blogDao()
     }
+
+//    @Singleton
+//    @Provides
+//    fun provideUserDb(@ApplicationContext context: Context) :UserDataBase  {
+//        return Room.databaseBuilder(
+//            context,
+//            UserDataBase::class.java,
+//            UserDataBase.DATABASE_NAME
+//        )
+//            .fallbackToDestructiveMigration()
+//            .build()
+//    }
+//
+//    @Singleton
+//    @Provides
+//    fun  provideUserDAO(userDataBase: UserDataBase):UserDao{
+//        return userDataBase.userDao()
+//    }
 
 }
