@@ -7,6 +7,10 @@ import android.view.View
 import androidx.activity.viewModels
 
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
+import com.example.kotlinetut.R
+import com.example.kotlinetut.databinding.ActivityLoginBinding
 import com.example.kotlinetut.databinding.ActivityMainBinding
 import com.example.kotlinetut.model.Blog
 import com.example.kotlinetut.retrofit.util.DataState
@@ -15,6 +19,7 @@ import java.lang.StringBuilder
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+   // lateinit var binding:ActivityMainBinding
     lateinit var binding:ActivityMainBinding
     private val viewModel:MainViewModel by viewModels()
 
@@ -23,46 +28,50 @@ class MainActivity : AppCompatActivity() {
          binding = ActivityMainBinding.inflate(layoutInflater)
         var view = binding.root
         setContentView(view)
-        subscribeObservers()
-        viewModel.setStateEvent(MainStateEvent.GetBlobEvents)
+        val navController = findNavController(R.id.nav_fragment)
+        binding.bottomNavigatinView.setupWithNavController(navController);
+
+//        supportActionBar?.hide();
+//        subscribeObservers()
+//        viewModel.setStateEvent(MainStateEvent.GetBlobEvents)
     }
 
-    private fun  subscribeObservers() {
-        viewModel.dataState.observe(this, Observer { dataState ->
-            when (dataState) {
-                is DataState.Success<List<Blog>> -> {
-                    displayProgressBar(false)
-                    appendBlogTitles(dataState.data)
-                }
-                is DataState.Error -> {
-                    displayProgressBar(false)
-                    displayError(dataState.exception.message)
-                }
-                is DataState.Loading -> {
-                    displayProgressBar(true)
-                }
-            }
-        }
-      )
-    }
+//    private fun  subscribeObservers() {
+//        viewModel.dataState.observe(this, Observer { dataState ->
+//            when (dataState) {
+//                is DataState.Success<List<Blog>> -> {
+//                    displayProgressBar(false)
+//                    appendBlogTitles(dataState.data)
+//                }
+//                is DataState.Error -> {
+//                    displayProgressBar(false)
+//                    displayError(dataState.exception.message)
+//                }
+//                is DataState.Loading -> {
+//                    displayProgressBar(true)
+//                }
+//            }
+//        }
+//      )
+//    }
 
-    private fun displayError(message:String?){
-        if (message != null){
-            binding.text.text = message
-        }
-        else {
-            binding.text.text = "Unknown Error"
-        }
-    }
-    private fun displayProgressBar(isDisplayed:Boolean){
-         binding.progressBar.visibility = if (isDisplayed) View.VISIBLE else View.GONE
-    }
-
-    private  fun appendBlogTitles(blogs:List<Blog>){
-        val sb = StringBuilder()
-        for (blog in blogs){
-            sb.append(blog.title + "\n" )
-        }
-        binding.text.text = sb.toString();
-    }
+//    private fun displayError(message:String?){
+//        if (message != null){
+//            binding.text.text = message
+//        }
+//        else {
+//            binding.text.text = "Unknown Error"
+//        }
+//    }
+//    private fun displayProgressBar(isDisplayed:Boolean){
+//         binding.progressBar.visibility = if (isDisplayed) View.VISIBLE else View.GONE
+//    }
+//
+//    private  fun appendBlogTitles(blogs:List<Blog>){
+//        val sb = StringBuilder()
+//        for (blog in blogs){
+//            sb.append(blog.title + "\n" )
+//        }
+//        binding.text.text = sb.toString();
+//    }
 }

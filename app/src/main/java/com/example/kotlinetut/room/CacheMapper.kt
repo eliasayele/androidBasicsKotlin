@@ -1,6 +1,7 @@
 package com.example.kotlinetut.room
 
 import com.example.kotlinetut.model.Blog
+
 import com.example.kotlinetut.retrofit.util.EntityMapper
 import javax.inject.Inject
 
@@ -34,3 +35,39 @@ constructor():EntityMapper<BlogCacheEntity,Blog>{
         }
     }
 }
+
+
+//class UserCacheMapper
+//@Inject
+//constructor():EntityMapper<UserCacheEntity,User>{
+//    override fun mapFromEntity(entity: UserCacheEntity): User {
+//        return User(
+//             id = entity.id,
+//            token = entity.token,
+//            name = entity.name,
+//            email = entity.email,
+//            picture = entity.picture,
+//            phone = entity.phone
+//        )
+//    }
+//
+//    override fun mapToEntity(domainModel: User): UserCacheEntity {
+//        return UserCacheEntity(
+//             id = domainModel.id,
+//            token = domainModel.token,
+//            name = domainModel.name,
+//            email = domainModel.email,
+//            picture = domainModel.picture,
+//            phone = domainModel.phone
+//
+//        )
+//    }
+//
+//
+////    fun   mapFromEntityList(entities:List<BlogCacheEntity>) :List<Blog>{
+////        return entities.map {
+////            mapFromEntity(it)
+////        }
+////    }
+//
+//}

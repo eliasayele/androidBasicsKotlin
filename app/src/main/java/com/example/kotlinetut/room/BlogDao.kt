@@ -14,3 +14,13 @@ suspend fun insert(blogEntity:BlogCacheEntity):Long
 suspend fun get():List<BlogCacheEntity>
 
 }
+
+//@Dao
+//interface UserDao {
+//    @Insert(onConflict = OnConflictStrategy.REPLACE)
+//    suspend fun insert(userEntity:UserCacheEntity):Long
+//
+//    @Query("SELECT * FROM user")
+//    suspend fun get():UserCacheEntity
+//
+//}
