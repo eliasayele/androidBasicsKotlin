@@ -5,23 +5,18 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-anydpi-v24/ic_notification.xml" value="0.171875" />
-        <entry key="app/src/main/res/drawable/ic_home.xml" value="0.19739583333333333" />
-        <entry key="app/src/main/res/drawable/ic_logo_screen.xml" value="0.1" />
-        <entry key="app/src/main/res/drawable/images.xml" value="0.10185185185185185" />
-        <entry key="app/src/main/res/drawable/no_internet.xml" value="0.19739583333333333" />
+        <entry key="app/src/main/res/drawable/my_border.xml" value="0.19583333333333333" />
+        <entry key="app/src/main/res/drawable/no_internet.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/activity_layout.xml" value="0.18206521739130435" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.2164855072463768" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_second.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/completed_list_item.xml" value="0.18125" />
+        <entry key="app/src/main/res/layout/completed_list_item.xml" value="0.13728470111448834" />
         <entry key="app/src/main/res/layout/custom_toast.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/fragment_completed.xml" value="0.18125" />
-        <entry key="app/src/main/res/layout/fragment_completed_inspection_list.xml" value="0.18125" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.146875" />
+        <entry key="app/src/main/res/layout/fragment_completed.xml" value="0.19384057971014493" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.165" />
         <entry key="app/src/main/res/menu/app_bar_menu.xml" value="0.11770833333333333" />
-        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.13177083333333334" />
-        <entry key="app/src/main/res/menu/menu.xml" value="0.18125" />
       </map>
     </option>
   </component>
@@ -30,12 +25,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.15" />
-      </ProjectState>
-    </option>
   </component>
 </project>
