@@ -8,11 +8,11 @@
   android:layout_margin="@dimen/dimen_8dp">
 
   <TextView
-    android:id="@+id/titleTextView"
+    android:id="@+id/tvName"
     style="@style/TitleTextStyle"
     android:layout_width="@dimen/dimen_0dp"
     android:layout_height="wrap_content"
-    app:layout_constraintBottom_toTopOf="@id/titleTextView"
+    app:layout_constraintBottom_toTopOf="@id/tvPaased"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toEndOf="@id/bookCardView"
     app:layout_constraintTop_toTopOf="@id/bookCardView"
@@ -20,15 +20,15 @@
     tools:text="Title" />
 
   <TextView
-    android:id="@+id/overviewTextView"
+    android:id="@+id/tvPaased"
     style="@style/SubtitleTextStyle"
     android:layout_width="@dimen/dimen_0dp"
     android:layout_height="wrap_content"
     android:maxLines="4"
     app:layout_constraintBottom_toBottomOf="@id/bookCardView"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="@id/titleTextView"
-    app:layout_constraintTop_toBottomOf="@id/titleTextView"
+    app:layout_constraintStart_toStartOf="@id/tvName"
+    app:layout_constraintTop_toBottomOf="@id/tvName"
     tools:text="Overview" />
 
   <androidx.cardview.widget.CardView
@@ -41,12 +41,12 @@
     android:elevation="@dimen/dimen_0dp"
     app:cardCornerRadius="@dimen/dimen_8dp"
     app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toStartOf="@id/titleTextView"
+    app:layout_constraintEnd_toStartOf="@id/tvName"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent">
 
     <ImageView
-      android:id="@+id/moviePosterImageView"
+      android:id="@+id/ivCarImage"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:contentDescription="@string/app_name"
