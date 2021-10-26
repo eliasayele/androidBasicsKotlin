@@ -2,4 +2,14 @@
     <string name="app_name">kotlineTut</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="code">
+        <item>Code 1</item>
+        <item>Code 3</item>
+    </string-array>
+
+    <string-array name="region">
+        <item>AA</item>
+        <item>OR</item>
+    </string-array>
 </resources>

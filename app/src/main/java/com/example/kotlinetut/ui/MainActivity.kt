@@ -3,6 +3,8 @@ package com.example.kotlinetut.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 
 import androidx.activity.viewModels
 
@@ -30,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
         val navController = findNavController(R.id.nav_fragment)
         binding.bottomNavigatinView.setupWithNavController(navController);
+
 
 //        supportActionBar?.hide();
 //        subscribeObservers()
