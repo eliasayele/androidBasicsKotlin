@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dimen_8dp"
         android:autofillHints="false"
-        android:hint="search car"
+        android:hint="@string/search_car"
         android:inputType="text"
         android:visibility="visible"
         app:endIconMode="clear_text"
@@ -39,7 +39,7 @@
         android:layout_width="@dimen/dimen_0dp"
         android:layout_height="wrap_content"
         android:drawableTop="@drawable/no_internet"
-        android:text="No Internet"
+        android:text="@string/no_internet"
         android:textColor="@color/noInternetButtonTextColor"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -69,6 +69,5 @@
         app:layout_constraintTop_toBottomOf="@+id/etSearchCompleted"
         tools:itemCount="10"
         tools:listitem="@layout/completed_list_item" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,8 @@
     <string name="app_name">kotlineTut</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_car">search car</string>
+    <string name="no_internet">No Internet</string>
 
     <string-array name="code">
         <item>Code 1</item>

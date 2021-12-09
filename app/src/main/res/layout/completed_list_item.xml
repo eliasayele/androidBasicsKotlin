@@ -17,7 +17,7 @@
     app:layout_constraintStart_toEndOf="@id/bookCardView"
     app:layout_constraintTop_toTopOf="@id/bookCardView"
     app:layout_constraintVertical_chainStyle="packed"
-    tools:text="Title" />
+    tools:text="Kaleab Kinfe" />
 
   <TextView
     android:id="@+id/tvPaased"
@@ -29,7 +29,7 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="@id/tvName"
     app:layout_constraintTop_toBottomOf="@id/tvName"
-    tools:text="Overview" />
+    tools:text="Hello this might get the" />
 
   <androidx.cardview.widget.CardView
     android:id="@+id/bookCardView"
@@ -49,6 +49,7 @@
       android:id="@+id/ivCarImage"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
+      android:src="@drawable/appicon"
       android:contentDescription="@string/app_name"
       android:scaleType="center" />
 
